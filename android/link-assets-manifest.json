@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Dorsa-Regular.ttf",
+      "sha1": "26a4e91b933bb384a11441223d6d9bfa4a91b06d"
+    },
+    {
+      "path": "assets/fonts/Dosis-Regular.ttf",
+      "sha1": "223f2240a8b3da47bb195e560a46f50fcafd43db"
+    }
+  ]
+}

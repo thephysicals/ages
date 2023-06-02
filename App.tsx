@@ -1,118 +1,79 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {View, Text, Button, StyleSheet} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import HeaderLogo from './templates/HeaderLogo';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function HomeScreen({navigation}: {navigation: any}) {
   return (
-    <View style={styles.sectionContainer}>
+    <HeaderLogo>
       <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
+        style={{
+          textAlign: 'center',
+          fontSize: 18,
+          fontFamily: 'Dosis',
+          padding: 10,
+        }}>
+        Essa é a área de gerenciamento e reservas de equipamentos e salas
+        compartilhadas do CEFID. Clique em login se já tem cadastro, se não,
+        clique em{' '}
+        <Text
+          style={{textDecorationLine: 'underline', color: 'blue'}}
+          onPress={() => {}}>
+          cadastrar
+        </Text>
+        . {'\n'} Entre como Visitante para simples consulta, sem acesso às
+        opções avançadas como reservas, comentários e cadastro de equipamentos.
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+      <View
+        style={{
+          borderBottomColor: '#C7D7FB',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          padding: 10,
+        }}
+      />
+      <Button onPress={() => {}} title="Log In" />
+      <View
+        style={{
+          borderBottomColor: '#C7D7FB',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          padding: 10,
+        }}
+      />
+      <Button onPress={() => {}} title="Visitante" />
+    </HeaderLogo>
   );
 }
+
+function DetailsScreen() {
+  return (
+    <HeaderLogo>
+      <Text>Details Screen</Text>
+    </HeaderLogo>
+  );
+}
+
+const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#1D6AFF',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
 export default App;
