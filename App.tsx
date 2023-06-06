@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './components/home/HomeScreen';
 import LoginScreen from './components/login/LoginScreen';
+import UserForm from './components/user/UserForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,11 @@ function App(): JSX.Element {
           name="LoginScreen"
           component={LoginScreen}
           options={{title: 'Log In'}}
+        />
+        <Stack.Screen
+          name="UserForm"
+          component={UserForm}
+          options={{title: 'Cadastrar novo usuário'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

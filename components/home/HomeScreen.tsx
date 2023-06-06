@@ -20,7 +20,9 @@ function HomeScreen({navigation}: {navigation: any}) {
           clique em{' '}
           <Text
             style={{textDecorationLine: 'underline', color: 'blue'}}
-            onPress={() => {}}>
+            onPress={() => {
+              navigation.navigate('UserForm');
+            }}>
             cadastrar
           </Text>
           . {'\n'} Entre como Visitante para simples consulta, sem acesso às
