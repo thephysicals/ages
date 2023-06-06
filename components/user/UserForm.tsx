@@ -14,7 +14,60 @@ const UserForm = () => {
   const [confirmacaoSenha, setConfirmacaoSenha] = React.useState('');
   const [violations, setViolations] = React.useState<Violation[]>([]);
 
+  const validateEmail = (mail: string) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  };
+
+  const createViolation = (field: string, message: string): Violation => {
+    const v: Violation = {field, message};
+    return v;
+  };
+
   const createUser = (data: User) => {
+    let initialViolations: Violation[] = [];
+
+    if (!data.cpf) {
+      initialViolations.push(createViolation('cpf', 'Informe seu CPF'));
+    }
+
+    if (!data.nome) {
+      initialViolations.push(createViolation('nome', 'Informe seu nome'));
+    }
+
+    if (!data.email) {
+      initialViolations.push(createViolation('email', 'Informe seu email'));
+    }
+
+    if (!data.senha) {
+      initialViolations.push(createViolation('senha', 'Informe sua senha'));
+    }
+
+    if (!confirmacaoSenha) {
+      initialViolations.push(
+        createViolation(
+          'confirmacaoSenha',
+          'Repita sua senha no campo Confirme sua senha',
+        ),
+      );
+    }
+    if (data.email && !validateEmail(data.email)) {
+      initialViolations.push(createViolation('email', 'Email inválido'));
+    }
+
+    if (data.senha && confirmacaoSenha) {
+      if (data.senha !== confirmacaoSenha) {
+        initialViolations.push(
+          createViolation('senha', 'A confirmação de senha não confere'),
+        );
+      }
+    }
+    if (initialViolations.length > 0) {
+      setViolations(initialViolations);
+      return;
+    }
     create(data, (v: Violation[]) => {
       setViolations(v);
     });
