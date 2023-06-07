@@ -4,15 +4,20 @@ import {create} from '../../services/user/user-service';
 import User from '../../types/User';
 import HeaderSmallLogo from '../../templates/HeaderSmallLogo';
 import Violation from '../../types/Violation';
+import {Message, TypeMessage} from '../../types/Message';
 
 const Separator = () => <View style={styles.separator} />;
-const UserForm = () => {
+const UserForm = ({navigation}: {navigation: any}) => {
   const [cpf, setCpf] = React.useState('');
   const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [senha, setSenha] = React.useState('');
   const [confirmacaoSenha, setConfirmacaoSenha] = React.useState('');
-  const [violations, setViolations] = React.useState<Violation[]>([]);
+  const [msg, setMessage] = React.useState<Message>({
+    message: '',
+    violations: [],
+    type: TypeMessage.success,
+  });
 
   const validateEmail = (mail: string) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
@@ -27,7 +32,12 @@ const UserForm = () => {
   };
 
   const createUser = (data: User) => {
-    let initialViolations: Violation[] = [];
+    const initialViolations: Violation[] = [];
+    const message: Message = {
+      message: '',
+      type: TypeMessage.success,
+      violations: [],
+    };
 
     if (!data.cpf) {
       initialViolations.push(createViolation('cpf', 'Informe seu CPF'));
@@ -65,18 +75,38 @@ const UserForm = () => {
       }
     }
     if (initialViolations.length > 0) {
-      setViolations(initialViolations);
+      message.violations = initialViolations;
+      message.type = TypeMessage.warning;
+      setMessage(message);
       return;
     }
-    create(data, (v: Violation[]) => {
-      setViolations(v);
-    });
+    create(
+      data,
+      () => {
+        const messageSuccess: Message = {
+          message: 'Usuário cadastrado com sucesso!',
+          type: TypeMessage.success,
+          violations: [],
+        };
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Home', params: {messageSuccess}}],
+        });
+        setMessage(messageSuccess);
+      },
+      (v: Violation[]) => {
+        const messageError: Message = {
+          message: 'Erro ao cadastrar usuário!',
+          type: TypeMessage.warning,
+          violations: v,
+        };
+        setMessage(messageError);
+        return;
+      },
+    );
   };
   return (
-    <HeaderSmallLogo
-      title="Novo usuário"
-      violations={violations}
-      setViolations={setViolations}>
+    <HeaderSmallLogo title="Novo usuário" message={msg} setMessage={setMessage}>
       <View style={styles.container}>
         <Text style={styles.label}>CPF</Text>
         <TextInput

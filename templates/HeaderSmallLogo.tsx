@@ -1,18 +1,18 @@
 import React from 'react';
 import {View, Image, Text} from 'react-native';
-import Violation from '../types/Violation';
-import ViolationsFragment from './ViolationsFragment';
+import MessageFragment from './MessageFragment';
+import {Message} from '../types/Message';
 
 const HeaderSmallLogo = ({
   children,
   title,
-  violations,
-  setViolations,
+  message,
+  setMessage,
 }: {
   children: JSX.Element;
   title: string;
-  violations: Violation[];
-  setViolations: (v: Violation[]) => void;
+  message: Message;
+  setMessage: (m: Message) => void;
 }): JSX.Element => {
   return (
     <>
@@ -47,10 +47,7 @@ const HeaderSmallLogo = ({
         }}>
         {children}
       </View>
-      <ViolationsFragment
-        violations={violations}
-        setViolations={setViolations}
-      />
+      <MessageFragment message={message} setMessage={setMessage} />
     </>
   );
 };
