@@ -9,6 +9,9 @@ const MessageFragment = ({
   message: Message;
   setMessage: (m: Message) => void;
 }) => {
+  if (!message) {
+    return <></>;
+  }
   if (message.type === TypeMessage.success) {
     if (message && message.message) {
       return (

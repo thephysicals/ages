@@ -90,7 +90,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
         };
         navigation.reset({
           index: 0,
-          routes: [{name: 'Home', params: {messageSuccess}}],
+          routes: [{name: 'LoginScreen', params: {messageSuccess}}],
         });
         setMessage(messageSuccess);
       },

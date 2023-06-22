@@ -1,7 +1,18 @@
 import React from 'react';
 import {View, Image, Text} from 'react-native';
+import {Message} from '../types/Message';
+import MessageFragment from './MessageFragment';
 
-const HeaderLogo = ({children}: {children: JSX.Element}): JSX.Element => {
+const HeaderLogo = ({
+  message,
+  setMessage,
+  children,
+}: {
+  message: Message;
+  setMessage: (m: Message) => void;
+  children: JSX.Element;
+  navigation: any;
+}): JSX.Element => {
   return (
     <>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -20,6 +31,7 @@ const HeaderLogo = ({children}: {children: JSX.Element}): JSX.Element => {
         }}>
         {children}
       </View>
+      <MessageFragment message={message} setMessage={setMessage} />
     </>
   );
 };

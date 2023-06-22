@@ -1,4 +1,5 @@
 import React from 'react';
+import {TouchableHighlight, Image, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -10,6 +11,8 @@ import HomeScreen from './components/home/HomeScreen';
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
+  const logOut = () => {};
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -31,7 +34,16 @@ function App(): JSX.Element {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'A.G.E.S.'}}
+          options={() => ({
+            headerRight: () => (
+              <TouchableHighlight onPress={() => logOut()}>
+                <Image
+                  source={require('./assets/log-out.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+            ),
+          })}
         />
         <Stack.Screen
           name="LoginScreen"
@@ -47,4 +59,11 @@ function App(): JSX.Element {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    width: 35,
+    height: 35,
+  },
+});
 export default App;

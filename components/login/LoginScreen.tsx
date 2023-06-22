@@ -1,17 +1,83 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 import HeaderLogo from '../../templates/HeaderLogo';
+import {Login} from '../../types/Login';
+import {Message, TypeMessage} from '../../types/Message';
+import Violation from '../../types/Violation';
+import {loginService, storeJwt} from '../../services/login/login-service';
+import {useNavigation} from '@react-navigation/native';
 
 const Separator = () => <View style={styles.separator} />;
 
-const LoginScreen = () => {
-  const [email, setEmail] = React.useState('');
-  const [cpf, setCpf] = React.useState('');
+const LoginScreen = (props: any) => {
+  const navigation = useNavigation();
+
+  const messageSuccess = props?.route?.params?.messageSuccess;
+  const [login, setLogin] = React.useState('');
   const [senha, setSenha] = React.useState('');
-  const [senhaConfimacao, setSenhaConfirmacao] = React.useState('');
+  const [message, setMessage] = React.useState<Message>({
+    message: '',
+    violations: [],
+    type: TypeMessage.success,
+  });
+
+  const createViolation = (
+    field: string,
+    messageViolation: string,
+  ): Violation => {
+    const v: Violation = {field: field, message: messageViolation};
+    return v;
+  };
+
+  const loginUser = (l: Login) => {
+    const initialViolations: Violation[] = [];
+    if (!l.login) {
+      initialViolations.push(
+        createViolation('senha', 'Por favor, informe o CPF'),
+      );
+    }
+    if (!l.senha) {
+      initialViolations.push(
+        createViolation('senha', 'Por favor, informe sua senha'),
+      );
+    }
+
+    if (initialViolations.length > 0) {
+      message.violations = initialViolations;
+      message.type = TypeMessage.warning;
+      setMessage(message);
+      return;
+    }
+    loginService(
+      l,
+      async data => {
+        storeJwt(data.data.token);
+        console.log(navigation);
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Home'}],
+        });
+      },
+      (violations: Violation[]) => {
+        const messageError: Message = {
+          message: 'Erro ao tentar logar usuário!',
+          type: TypeMessage.warning,
+          violations: violations,
+        };
+        setMessage(messageError);
+        return;
+      },
+    );
+  };
+
+  useEffect(() => {
+    if (messageSuccess) {
+      setMessage(messageSuccess);
+    }
+  }, [messageSuccess]);
 
   return (
-    <HeaderLogo>
+    <HeaderLogo message={message} setMessage={setMessage}>
       <View style={styles.container}>
         <Text style={styles.titulo}>Log In</Text>
         <Text style={styles.label}>CPF</Text>
@@ -22,6 +88,8 @@ const LoginScreen = () => {
           inputMode="numeric"
           keyboardAppearance="dark"
           autoCorrect={false}
+          onChangeText={setLogin}
+          value={login}
         />
         <Text style={styles.label}>Senha</Text>
         <TextInput
@@ -31,9 +99,16 @@ const LoginScreen = () => {
           keyboardAppearance="dark"
           secureTextEntry={true}
           autoCorrect={false}
+          onChangeText={setSenha}
+          value={senha}
         />
         <Separator />
-        <Button onPress={() => {}} title="Log In" />
+        <Button
+          onPress={() => {
+            loginUser({login, senha});
+          }}
+          title="Log In"
+        />
       </View>
     </HeaderLogo>
   );
