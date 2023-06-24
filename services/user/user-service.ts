@@ -1,4 +1,4 @@
-import http from '../http-commons';
+import {http} from '../http-commons';
 import User from '../../types/User';
 import Violation from '../../types/Violation';
 

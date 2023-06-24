@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import http from '../http-commons';
+import {http} from '../http-commons';
 import Violation from '../../types/Violation';
 import {Login} from '../../types/Login';
 import {LoginUser} from '../../types/LoginUser';
@@ -45,7 +45,7 @@ const getJwt = async (): Promise<string> => {
   if (jwt) {
     return jwt;
   }
-  throw Error;
+  return '';
 };
 
 const logout = async () => {

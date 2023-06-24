@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableHighlight, Image, StyleSheet} from 'react-native';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import IndexScreen from './components/index/IndexScreen';
@@ -8,6 +8,7 @@ import LoginScreen from './components/login/LoginScreen';
 import UserForm from './components/user/UserForm';
 import HomeScreen from './components/home/HomeScreen';
 import {logout} from './services/login/login-service';
+import ListaRecursosScreen from './components/recurso/ListaRecursosScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,27 @@ function App(): JSX.Element {
           name="Index"
           component={IndexScreen}
           options={{title: 'A.G.E.S.'}}
+        />
+        <Stack.Screen
+          name="ListagemRecursos"
+          component={ListaRecursosScreen}
+          options={({navigation}) => ({
+            title: 'A.G.E.S.',
+            headerRight: () => (
+              <TouchableHighlight
+                onPress={() => {
+                  logOut();
+                  navigation.reset({
+                    routes: [{name: 'Index'}],
+                  });
+                }}>
+                <Image
+                  source={require('./assets/log-out.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+            ),
+          })}
         />
         <Stack.Screen
           name="Home"

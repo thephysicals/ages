@@ -41,7 +41,6 @@ const HeaderSmallLogo = ({
         style={{
           flex: 5,
           backgroundColor: '#E7ECF6',
-          borderRadius: 20,
           borderWidth: 1,
           borderColor: '#C7D7FB',
         }}>

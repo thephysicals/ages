@@ -1,0 +1,64 @@
+import React, {useEffect} from 'react';
+import {View, Text, FlatList} from 'react-native';
+import {listarRecursoPeloTipo} from '../../services/recurso/recurso-service';
+import HeaderSmallLogo from '../../templates/HeaderSmallLogo';
+import {Message, TypeMessage} from '../../types/Message';
+import {Recurso, TipoRecurso} from '../../types/Recurso';
+import Violation from '../../types/Violation';
+import LineTable from '../LineTable';
+
+const ListaRecursosScreen = ({props}: {props: any}) => {
+  const [lista, setLista] = React.useState<Recurso[]>();
+  const [message, setMessage] = React.useState<Message>({
+    message: '',
+    violations: [],
+    type: TypeMessage.success,
+  });
+
+  useEffect(() => {
+    listarRecursoPeloTipo(
+      TipoRecurso.SALA_MULTIUSO,
+      data => {
+        var recursos: Recurso[] = [];
+        data.map((d: any) => {
+          var recurso: Recurso = {
+            id: d.id,
+            nome: d.nome,
+            descricao: d.descricao,
+            tipoRecurso: d.tipoRecurso,
+            tipoEquimento: d.tipoEquimento,
+          };
+          recursos.push(recurso);
+        });
+        console.log(recursos);
+        setLista(recursos);
+      },
+      (violations: Violation[]) => {
+        const m: Message = {
+          type: TypeMessage.warning,
+          message: 'Erro ao listar recursos',
+          violations: violations,
+        };
+        setMessage(m);
+        let semRecurso: Recurso[] = [];
+        setLista(semRecurso);
+      },
+    );
+  }, []);
+
+  return (
+    <HeaderSmallLogo
+      title={props?.route?.params?.title}
+      message={message}
+      setMessage={setMessage}>
+      <View>
+        <FlatList
+          data={lista}
+          renderItem={({item}) => <LineTable recurso={item} />}
+        />
+      </View>
+    </HeaderSmallLogo>
+  );
+};
+
+export default ListaRecursosScreen;
