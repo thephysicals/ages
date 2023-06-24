@@ -77,7 +77,10 @@ const LoginScreen = (props: any) => {
   }, [messageSuccess]);
 
   return (
-    <HeaderLogo message={message} setMessage={setMessage}>
+    <HeaderLogo
+      message={message}
+      setMessage={setMessage}
+      navigation={navigation}>
       <View style={styles.container}>
         <Text style={styles.titulo}>Log In</Text>
         <Text style={styles.label}>CPF</Text>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, TouchableHighlight} from 'react-native';
 import {Message} from '../types/Message';
 import MessageFragment from './MessageFragment';
 
@@ -7,6 +7,7 @@ const HeaderLogo = ({
   message,
   setMessage,
   children,
+  navigation,
 }: {
   message: Message;
   setMessage: (m: Message) => void;
@@ -16,11 +17,20 @@ const HeaderLogo = ({
   return (
     <>
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Image source={require('../assets/logot80.png')} />
+        <TouchableHighlight
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Index'}],
+            });
+          }}>
+          <Image source={require('../assets/logot80.png')} />
+        </TouchableHighlight>
         <Text style={{fontFamily: 'Dorsa', fontSize: 40, fontWeight: 'bold'}}>
           A.G.E.S
         </Text>
       </View>
+
       <View
         style={{
           flex: 3,

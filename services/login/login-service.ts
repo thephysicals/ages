@@ -48,4 +48,8 @@ const getJwt = async (): Promise<string> => {
   throw Error;
 };
 
-export {loginService, decryptJwt, storeJwt, getJwtDecoded, getJwt};
+const logout = async () => {
+  AsyncStorage.removeItem(LOGIN_USER_STORED);
+};
+
+export {loginService, decryptJwt, storeJwt, getJwtDecoded, getJwt, logout};
