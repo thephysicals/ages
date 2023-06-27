@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {listarRecursoPeloTipo} from '../../services/recurso/recurso-service';
 import HeaderSmallLogo from '../../templates/HeaderSmallLogo';
 import {Message, TypeMessage} from '../../types/Message';
@@ -7,7 +7,13 @@ import {Recurso, TipoRecurso} from '../../types/Recurso';
 import Violation from '../../types/Violation';
 import LineTable from '../LineTable';
 
-const ListaRecursosScreen = ({props}: {props: any}) => {
+const ListaRecursosScreen = ({
+  props,
+  navigation,
+}: {
+  props: any;
+  navigation: any;
+}) => {
   const [lista, setLista] = React.useState<Recurso[]>();
   const [message, setMessage] = React.useState<Message>({
     message: '',
@@ -30,7 +36,6 @@ const ListaRecursosScreen = ({props}: {props: any}) => {
           };
           recursos.push(recurso);
         });
-        console.log(recursos);
         setLista(recursos);
       },
       (violations: Violation[]) => {
@@ -54,7 +59,9 @@ const ListaRecursosScreen = ({props}: {props: any}) => {
       <View>
         <FlatList
           data={lista}
-          renderItem={({item}) => <LineTable recurso={item} />}
+          renderItem={({item}) => (
+            <LineTable recurso={item} navigation={navigation} />
+          )}
         />
       </View>
     </HeaderSmallLogo>

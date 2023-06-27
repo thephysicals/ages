@@ -52,7 +52,6 @@ const LoginScreen = (props: any) => {
       l,
       async data => {
         storeJwt(data.data.token);
-        console.log(navigation);
         navigation.reset({
           index: 0,
           routes: [{name: 'Home'}],
