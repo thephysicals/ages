@@ -1,10 +1,22 @@
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import {Recurso} from '../types/Recurso';
 import SevenDaysBar from './SevenDaysBar';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import {RescursoReservado} from '../types/RecursoReservado';
+import {getJwtDecoded} from '../services/login/login-service';
+import {recuperarLocacao} from '../services/locacao/locacao-service';
+import {Message} from '../types/Message';
+import MessageFragment from '../templates/MessageFragment';
+import Violation from '../types/Violation';
 
-const CardDetail = ({recurso}: {recurso: Recurso}) => {
+const CardDetail = ({
+  recurso,
+  navigation,
+}: {
+  recurso: Recurso;
+  navigation: any;
+}) => {
   LocaleConfig.locales.pt = {
     monthNames: [
       'Janeiro',
@@ -48,6 +60,28 @@ const CardDetail = ({recurso}: {recurso: Recurso}) => {
   };
   LocaleConfig.defaultLocale = 'pt';
 
+  const [markedDates, setMarkedDates] = React.useState({});
+  const [selectedDates, setSelectedDates] = React.useState({});
+  const [message, setMessage] = React.useState<Message>();
+  const [userColor, setUserColor] = React.useState('');
+
+  useEffect(() => {
+    getJwtDecoded().then(d => setUserColor(d.color));
+  }, []);
+
+  useEffect(() => {
+    recuperarLocacao(
+      recurso.id,
+      data => {
+        console.log(data);
+        setMarkedDates(data);
+      },
+      (vs: Violation[]) => {
+        console.log('ERROR', vs);
+      },
+    );
+  }, [recurso.id]);
+
   return (
     <>
       <View style={styles.cardContainer}>
@@ -58,33 +92,63 @@ const CardDetail = ({recurso}: {recurso: Recurso}) => {
         <Text style={styles.description}>{recurso.descricao}</Text>
         <SevenDaysBar />
       </View>
-      <View style={styles.calendarContainer}>
+      <View>
         <Calendar
+          theme={{
+            stylesheet: {
+              calendar: {
+                header: {
+                  week: {
+                    marginTop: 1,
+                    marginHorizontal: 2,
+                  },
+                  marginTop: 1,
+                },
+              },
+            },
+          }}
           markingType={'period'}
-          markedDates={{
-            '2023-06-15': {marked: true, dotColor: '#50cebb'},
-            '2023-06-16': {marked: true, dotColor: '#50cebb'},
-            '2023-06-21': {
-              startingDay: true,
-              color: '#50cebb',
-              textColor: 'white',
-            },
-            '2023-06-22': {color: '#70d7c7', textColor: 'white'},
-            '2023-06-23': {
-              color: '#70d7c7',
-              textColor: 'white',
-              marked: true,
-              dotColor: 'white',
-            },
-            '2023-06-24': {color: '#70d7c7', textColor: 'white'},
-            '2023-06-25': {
-              endingDay: true,
-              color: '#50cebb',
-              textColor: 'white',
-            },
+          markedDates={markedDates}
+          onDayPress={day => {
+            let newMarkedDates = {
+              ...markedDates,
+              [day.dateString]: {
+                color: userColor,
+                textColor: 'white',
+              },
+            };
+            let selectedMarkedDates = {
+              ...selectedDates,
+              [day.dateString]: {
+                color: userColor,
+                textColor: 'white',
+              },
+            };
+            setSelectedDates(selectedMarkedDates);
+            setMarkedDates(newMarkedDates);
+          }}
+          onDayLongPress={day => {
+            console.log('selected day', day);
           }}
         />
       </View>
+      <Button
+        title="Reservar"
+        onPress={async () => {
+          const datas: string[] = Object.keys(selectedDates);
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          const recursoReservado: RescursoReservado = {
+            loginUser: await getJwtDecoded(),
+            dates: datas,
+            recurso: recurso,
+          };
+
+          navigation.navigate('DetalheRecursoReservado', {
+            recursoReservado: recursoReservado,
+          });
+        }}
+      />
+      <MessageFragment message={message} setMessage={setMessage} />
     </>
   );
 };
@@ -93,7 +157,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     display: 'flex',
     flexDirection: 'column',
-    height: 230,
+    height: 180,
     backgroundColor: '#FFFEED',
     borderWidth: 1,
     borderColor: '#C7D7FB',
@@ -115,10 +179,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     resizeMode: 'contain',
     height: '70%',
-    width: '100%%',
+    width: '100%',
     marginTop: 10,
     flex: 0,
   },
-  calendarContainer: {},
 });
 export default CardDetail;

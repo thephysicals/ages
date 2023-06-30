@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {getJwtDecoded} from '../../services/login/login-service';
@@ -8,7 +9,9 @@ import SpecialButton from '../SpecialButton';
 
 const Separator = () => <View style={styles.separator} />;
 
-function HomeScreen({navigation}: {navigation: any}) {
+function HomeScreen(props: any) {
+  const navigation = useNavigation();
+  const messageSuccess = props?.route?.params?.messageSuccess;
   const [msg, setMessage] = React.useState<Message>({
     message: '',
     violations: [],
@@ -17,12 +20,25 @@ function HomeScreen({navigation}: {navigation: any}) {
   const [userLoginUser, setLoginUser] = React.useState<LoginUser>();
 
   useEffect(() => {
+    if (messageSuccess) {
+      setMessage(messageSuccess);
+    }
+  }, [messageSuccess]);
+
+  useEffect(() => {
     if (!userLoginUser) {
       getJwtDecoded().then((loggedUser: LoginUser) => {
         setLoginUser(loggedUser);
       });
     }
   }, [userLoginUser]);
+
+  const getUnderline = (userLoginUser: LoginUser) => {
+    return {
+      textDecorationLine: 'underline',
+      textDecorationColor: userLoginUser?.color,
+    };
+  };
 
   const buttonPress = (tipoBotao: string) => {
     switch (tipoBotao) {
@@ -38,7 +54,11 @@ function HomeScreen({navigation}: {navigation: any}) {
     <HeaderSmallLogo title="Minha home" message={msg} setMessage={setMessage}>
       <View style={styles.container}>
         <Text style={styles.label}>
-          Bem vindo, {userLoginUser?.given_name}!
+          Bem vindo,{' '}
+          <Text style={getUnderline(userLoginUser!)}>
+            {userLoginUser?.given_name}
+          </Text>
+          !
         </Text>
         <View style={styles.container}>
           <Separator />

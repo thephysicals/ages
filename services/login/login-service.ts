@@ -24,6 +24,7 @@ const loginService = (
 
 const decryptJwt = (jwt: string | null): LoginUser => {
   let decoded: LoginUser = jwt_decode(jwt!);
+  console.log('decoded', decoded);
   return decoded;
 };
 

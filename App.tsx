@@ -10,6 +10,7 @@ import HomeScreen from './components/home/HomeScreen';
 import {logout} from './services/login/login-service';
 import ListaRecursosScreen from './components/recurso/ListaRecursosScreen';
 import DetalheRecursoScreen from './components/recurso/DetalheRecursoScreen';
+import DetalheRecursoReservadoScreen from './components/recurso/DetalheRecursoReservadoScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +41,7 @@ function App(): JSX.Element {
           name="ListagemRecursos"
           component={ListaRecursosScreen}
           options={({navigation}) => ({
-            title: 'A.G.E.S.',
+            title: 'Recursos',
             headerRight: () => (
               <TouchableHighlight
                 onPress={() => {
@@ -82,6 +83,27 @@ function App(): JSX.Element {
           name="Home"
           component={HomeScreen}
           options={({navigation}) => ({
+            headerRight: () => (
+              <TouchableHighlight
+                onPress={() => {
+                  logOut();
+                  navigation.reset({
+                    routes: [{name: 'Index'}],
+                  });
+                }}>
+                <Image
+                  source={require('./assets/log-out.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="DetalheRecursoReservado"
+          component={DetalheRecursoReservadoScreen}
+          options={({navigation}) => ({
+            title: 'Confirma locação?',
             headerRight: () => (
               <TouchableHighlight
                 onPress={() => {

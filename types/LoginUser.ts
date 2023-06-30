@@ -7,6 +7,7 @@ interface LoginUser {
   iss: string;
   sub: string;
   upn: string;
+  color: string;
 }
 
 export type {LoginUser};

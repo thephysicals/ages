@@ -10,9 +10,9 @@ const SevenDaysBar = () => {
       <View style={styles.containerDays}>
         {dias.map(d => {
           if (diasReservados.includes(d)) {
-            return <View style={styles.squareSelected} />;
+            return <View style={styles.squareSelected} key={d} />;
           } else {
-            return <View style={styles.squareNotSelected} />;
+            return <View style={styles.squareNotSelected} key={d} />;
           }
         })}
       </View>
