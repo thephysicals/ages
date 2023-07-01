@@ -37,7 +37,7 @@ function IndexScreen({navigation}: {navigation: any}) {
           title="Log In"
         />
         <Separator />
-        <Button onPress={() => {}} title="Visitante" />
+        {/* <Button onPress={() => {}} title="Visitante" /> */}
       </>
     </HeaderLogo>
   );

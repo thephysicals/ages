@@ -10,9 +10,11 @@ const create = (
   http
     .post('/v1/usuario', data)
     .then(result => {
+      console.log(result);
       onSuccess(result);
     })
     .catch(error => {
+      console.log(JSON.stringify(error));
       onError(error.response.data.violations);
     });
 };
