@@ -22,6 +22,7 @@ DerivedData
 *.xcuserstate
 ios/.xcode.env.local
 android/gradle/wrapper/
+android/app/ages.keystore
 
 # Android/IntelliJ
 #
