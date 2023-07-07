@@ -14,8 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		224099812A26CC7D00BBB242 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224099802A26CC7D00BBB242 /* Launch Screen.storyboard */; };
 		7699B88040F8A987B510C191 /* libPods-ages-agesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ages-agesTests.a */; };
-		D5D76187E15B4020BF027D1B /* Dosis-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72DF5FD4B9314E3F9266D326 /* Dosis-Regular.ttf */; };
-		E7957FD81C8343159D7900A2 /* Dorsa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 053F1C4CEA3E47A1BD1BD09F /* Dorsa-Regular.ttf */; };
+		8F014AB7EADD4E1D8B810400 /* Dorsa.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FB7170E1E71493D89332D1F /* Dorsa.ttf */; };
+		FD349086D9524AE99B38CE92 /* Dosis.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7E155A07BDC4A8BAB1D3116 /* Dosis.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +32,6 @@
 		00E356EE1AD99517003FC87E /* agesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = agesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* agesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = agesTests.m; sourceTree = "<group>"; };
-		053F1C4CEA3E47A1BD1BD09F /* Dorsa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Dorsa-Regular.ttf"; path = "../assets/fonts/Dorsa-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ages/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ages/AppDelegate.mm; sourceTree = "<group>"; };
@@ -42,11 +41,12 @@
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ages-agesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ages-agesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		224099802A26CC7D00BBB242 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-ages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ages.debug.xcconfig"; path = "Target Support Files/Pods-ages/Pods-ages.debug.xcconfig"; sourceTree = "<group>"; };
+		4FB7170E1E71493D89332D1F /* Dorsa.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Dorsa.ttf; path = ../assets/fonts/Dorsa.ttf; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-ages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ages.release.xcconfig"; path = "Target Support Files/Pods-ages/Pods-ages.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ages-agesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ages-agesTests.debug.xcconfig"; path = "Target Support Files/Pods-ages-agesTests/Pods-ages-agesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ages.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ages.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		72DF5FD4B9314E3F9266D326 /* Dosis-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Dosis-Regular.ttf"; path = "../assets/fonts/Dosis-Regular.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ages-agesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ages-agesTests.release.xcconfig"; path = "Target Support Files/Pods-ages-agesTests/Pods-ages-agesTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7E155A07BDC4A8BAB1D3116 /* Dosis.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Dosis.ttf; path = ../assets/fonts/Dosis.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -156,8 +156,8 @@
 		C83554C453374D4196FB833C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				053F1C4CEA3E47A1BD1BD09F /* Dorsa-Regular.ttf */,
-				72DF5FD4B9314E3F9266D326 /* Dosis-Regular.ttf */,
+				4FB7170E1E71493D89332D1F /* Dorsa.ttf */,
+				E7E155A07BDC4A8BAB1D3116 /* Dosis.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -259,8 +259,8 @@
 			files = (
 				224099812A26CC7D00BBB242 /* Launch Screen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				E7957FD81C8343159D7900A2 /* Dorsa-Regular.ttf in Resources */,
-				D5D76187E15B4020BF027D1B /* Dosis-Regular.ttf in Resources */,
+				8F014AB7EADD4E1D8B810400 /* Dorsa.ttf in Resources */,
+				FD349086D9524AE99B38CE92 /* Dosis.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

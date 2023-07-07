@@ -53,8 +53,8 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Dorsa-Regular.ttf</string>
-		<string>Dosis-Regular.ttf</string>
+		<string>Dorsa.ttf</string>
+		<string>Dosis.ttf</string>
 	</array>
 </dict>
 </plist>
