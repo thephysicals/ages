@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {Button, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Recurso} from '../types/Recurso';
 import SevenDaysBar from './SevenDaysBar';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
@@ -83,7 +83,7 @@ const CardDetail = ({
   }, [recurso.id]);
 
   return (
-    <>
+    <ScrollView>
       <View style={styles.cardContainer}>
         <Image
           source={require('../assets/sala-multiuso-grande.png')}
@@ -149,7 +149,7 @@ const CardDetail = ({
         }}
       />
       <MessageFragment message={message} setMessage={setMessage} />
-    </>
+    </ScrollView>
   );
 };
 

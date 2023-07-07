@@ -18,6 +18,7 @@ const loginService = (
       onSuccess(result);
     })
     .catch(error => {
+      console.log(error);
       onError(error.response.data.violations);
     });
 };

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Button, ScrollView} from 'react-native';
 import HeaderSmallLogo from '../../templates/HeaderSmallLogo';
 import {Message, TypeMessage} from '../../types/Message';
 import {RescursoReservado} from '../../types/RecursoReservado';
@@ -52,39 +52,43 @@ const DetalheRecursoReservadoScreen = (props: any) => {
       title="Detalhes da locação"
       message={message}
       setMessage={setMessage}>
-      <View style={styles.cardContainerSolicitante}>
-        <Text style={styles.title}>Solicitante</Text>
-        <Separator />
-        <Text style={styles.detail}>
-          {recursoReservado.loginUser.given_name}
-        </Text>
-        <Text style={styles.detail}>{recursoReservado.loginUser.email}</Text>
-      </View>
-      <View style={styles.cardContainerRecurso}>
-        <Text style={styles.title}>Recurso</Text>
-        <Separator />
-        <Text style={styles.detail}>{recursoReservado.recurso.nome}</Text>
-        <Text style={styles.detail}>{recursoReservado.recurso.descricao}</Text>
-      </View>
-      <View style={styles.cardContainerData}>
-        <Text style={styles.title}>Datas</Text>
-        <Separator />
-        <Text style={styles.detail}>
-          {recursoReservado.dates.map(
-            d => Moment(d).format('DD/MM/yyyy') + '\n',
-          )}
-        </Text>
-      </View>
-      <Button
-        title="Confirmar"
-        onPress={async () => {
-          confimarLocacao(
-            recursoReservado.recurso.id,
-            recursoReservado.loginUser.sub,
-            recursoReservado.dates,
-          );
-        }}
-      />
+      <ScrollView>
+        <View style={styles.cardContainerSolicitante}>
+          <Text style={styles.title}>Solicitante</Text>
+          <Separator />
+          <Text style={styles.detail}>
+            {recursoReservado.loginUser.given_name}
+          </Text>
+          <Text style={styles.detail}>{recursoReservado.loginUser.email}</Text>
+        </View>
+        <View style={styles.cardContainerRecurso}>
+          <Text style={styles.title}>Recurso</Text>
+          <Separator />
+          <Text style={styles.detail}>{recursoReservado.recurso.nome}</Text>
+          <Text style={styles.detail}>
+            {recursoReservado.recurso.descricao}
+          </Text>
+        </View>
+        <View style={styles.cardContainerData}>
+          <Text style={styles.title}>Datas</Text>
+          <Separator />
+          <Text style={styles.detail}>
+            {recursoReservado.dates.map(
+              d => Moment(d).format('DD/MM/yyyy') + '\n',
+            )}
+          </Text>
+        </View>
+        <Button
+          title="Confirmar"
+          onPress={async () => {
+            confimarLocacao(
+              recursoReservado.recurso.id,
+              recursoReservado.loginUser.sub,
+              recursoReservado.dates,
+            );
+          }}
+        />
+      </ScrollView>
     </HeaderSmallLogo>
   );
 };
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
   cardContainerData: {
     display: 'flex',
     flexDirection: 'column',
-    height: 140,
+
     backgroundColor: '#FFFEED',
     borderWidth: 1,
     borderColor: '#C7D7FB',
@@ -148,6 +152,3 @@ const styles = StyleSheet.create({
   },
 });
 export default DetalheRecursoReservadoScreen;
-function onSuccess(arg0: (data: any) => void): (fn: any) => void {
-  throw new Error('Function not implemented.');
-}
