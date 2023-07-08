@@ -4,7 +4,6 @@ import {View, Text, StyleSheet, Button, ScrollView} from 'react-native';
 import HeaderSmallLogo from '../../templates/HeaderSmallLogo';
 import {Message, TypeMessage} from '../../types/Message';
 import {RescursoReservado} from '../../types/RecursoReservado';
-import Moment from 'moment';
 import {locarRecurso} from '../../services/locacao/locacao-service';
 import Violation from '../../types/Violation';
 
@@ -16,8 +15,6 @@ const DetalheRecursoReservadoScreen = (props: any) => {
 
   const [message, setMessage] = React.useState<Message>();
   const navigation = useNavigation();
-
-  Moment.locale('pt');
 
   const confimarLocacao = (idRecurso: number, cpf: string, datas: string[]) => {
     locarRecurso(
@@ -74,7 +71,13 @@ const DetalheRecursoReservadoScreen = (props: any) => {
           <Separator />
           <Text style={styles.detail}>
             {recursoReservado.dates.map(
-              d => Moment(d).format('DD/MM/yyyy') + '\n',
+              d =>
+                d.substring(8, 10) +
+                '/' +
+                d.substring(5, 7) +
+                '/' +
+                d.substring(0, 4) +
+                '\n',
             )}
           </Text>
         </View>

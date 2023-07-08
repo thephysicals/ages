@@ -35,8 +35,9 @@ function HomeScreen(props: any) {
 
   const getUnderline = (userLoginUser: LoginUser) => {
     return {
-      textDecorationLine: 'underline',
-      textDecorationColor: userLoginUser?.color,
+      borderColor: 'red',
+      borderWidth: 20,
+      borderStyle: 'solid',
     };
   };
 
