@@ -92,6 +92,7 @@ const LoginScreen = (props: any) => {
           autoCorrect={false}
           onChangeText={setLogin}
           value={login}
+          placeholderTextColor="#5C5C5C"
         />
         <Text style={styles.label}>Senha</Text>
         <TextInput
@@ -103,6 +104,7 @@ const LoginScreen = (props: any) => {
           autoCorrect={false}
           onChangeText={setSenha}
           value={senha}
+          placeholderTextColor="#5C5C5C"
         />
         <Separator />
         <Button

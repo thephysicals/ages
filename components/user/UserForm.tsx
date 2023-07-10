@@ -112,6 +112,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
         <TextInput
           style={styles.input}
           placeholder="Informe o CPF"
+          placeholderTextColor="#5C5C5C"
           keyboardType="numeric"
           inputMode="numeric"
           keyboardAppearance="dark"
@@ -123,6 +124,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
         <TextInput
           style={styles.input}
           placeholder="Informe seu nome"
+          placeholderTextColor="#5C5C5C"
           inputMode="text"
           keyboardAppearance="dark"
           autoCorrect={true}
@@ -133,6 +135,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
         <TextInput
           style={styles.input}
           placeholder="Informe seu email"
+          placeholderTextColor="#5C5C5C"
           inputMode="email"
           keyboardType="email-address"
           keyboardAppearance="dark"
@@ -144,6 +147,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
         <TextInput
           style={styles.input}
           placeholder="Sua senha"
+          placeholderTextColor="#5C5C5C"
           autoComplete="off"
           keyboardAppearance="dark"
           secureTextEntry={true}
@@ -155,6 +159,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
         <TextInput
           style={styles.input}
           placeholder="Confirme sua senha"
+          placeholderTextColor="#5C5C5C"
           autoComplete="off"
           keyboardAppearance="dark"
           secureTextEntry={true}
@@ -188,6 +193,7 @@ const styles = {
     fontFamily: 'Dosis',
     fontSize: 20,
     padding: 10,
+    color: '#000000',
   },
   input: {
     borderWidth: 1,
