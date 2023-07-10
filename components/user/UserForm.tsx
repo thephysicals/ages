@@ -201,6 +201,7 @@ const styles = {
     borderRadius: 10,
     height: 40,
     padding: 5,
+    color: '#000000',
   },
   separator: {
     borderBottomColor: '#C7D7FB',

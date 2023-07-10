@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 40,
     padding: 5,
+    color: '#000000',
   },
   titulo: {
     fontFamily: 'Dosis',
