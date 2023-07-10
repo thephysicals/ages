@@ -18,14 +18,12 @@ const loginService = (
       onSuccess(result);
     })
     .catch(error => {
-      console.log(error);
       onError(error.response.data.violations);
     });
 };
 
 const decryptJwt = (jwt: string | null): LoginUser => {
   let decoded: LoginUser = jwt_decode(jwt!);
-  console.log('decoded', decoded);
   return decoded;
 };
 

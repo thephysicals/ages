@@ -21,33 +21,7 @@ const LoginScreen = (props: any) => {
     type: TypeMessage.success,
   });
 
-  const createViolation = (
-    field: string,
-    messageViolation: string,
-  ): Violation => {
-    const v: Violation = {field: field, message: messageViolation};
-    return v;
-  };
-
   const loginUser = (l: Login) => {
-    const initialViolations: Violation[] = [];
-    if (!l.login) {
-      initialViolations.push(
-        createViolation('senha', 'Por favor, informe o CPF'),
-      );
-    }
-    if (!l.senha) {
-      initialViolations.push(
-        createViolation('senha', 'Por favor, informe sua senha'),
-      );
-    }
-
-    if (initialViolations.length > 0) {
-      message.violations = initialViolations;
-      message.type = TypeMessage.warning;
-      setMessage(message);
-      return;
-    }
     loginService(
       l,
       async data => {

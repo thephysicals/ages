@@ -73,7 +73,6 @@ const CardDetail = ({
     recuperarLocacao(
       recurso.id,
       data => {
-        console.log(data);
         setMarkedDates(data);
       },
       (vs: Violation[]) => {
