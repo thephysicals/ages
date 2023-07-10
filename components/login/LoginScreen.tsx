@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Dosis',
     fontSize: 20,
     padding: 10,
+    color: '#000000',
   },
   input: {
     borderWidth: 1,
@@ -135,7 +136,13 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 5,
   },
-  titulo: {fontFamily: 'Dosis', fontSize: 20, padding: 5, flex: 1},
+  titulo: {
+    fontFamily: 'Dosis',
+    fontSize: 20,
+    padding: 5,
+    flex: 1,
+    color: '#000000',
+  },
 });
 
 export default LoginScreen;

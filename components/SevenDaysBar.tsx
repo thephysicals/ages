@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     flex: 0,
     marginBottom: 2,
+    color: '#000000',
   },
   squareNotSelected: {
     height: 8,

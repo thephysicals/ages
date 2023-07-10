@@ -145,8 +145,18 @@ const styles = StyleSheet.create({
     },
   },
 
-  detail: {fontFamily: 'Dosis', fontSize: 18, marginBottom: 10},
-  title: {fontFamily: 'Dosis', fontSize: 21, fontWeight: 'bold'},
+  detail: {
+    fontFamily: 'Dosis',
+    fontSize: 18,
+    marginBottom: 10,
+    color: '#000000',
+  },
+  title: {
+    fontFamily: 'Dosis',
+    fontSize: 21,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
   separator: {
     borderBottomColor: '#C7D7FB',
     borderBottomWidth: StyleSheet.hairlineWidth,

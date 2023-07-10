@@ -26,7 +26,9 @@ const HeaderLogo = ({
           }}>
           <Image source={require('../assets/logot80.png')} />
         </TouchableHighlight>
-        <Text style={{fontFamily: 'Dorsa', fontSize: 60}}>A.G.E.S</Text>
+        <Text style={{fontFamily: 'Dorsa', fontSize: 60, color: '#000000'}}>
+          A.G.E.S
+        </Text>
       </View>
 
       <View

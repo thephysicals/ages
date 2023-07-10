@@ -6,14 +6,10 @@ import {Message, TypeMessage} from '../../types/Message';
 import {Recurso, TipoRecurso} from '../../types/Recurso';
 import Violation from '../../types/Violation';
 import LineTable from '../LineTable';
+import {useNavigation} from '@react-navigation/native';
 
-const ListaRecursosScreen = ({
-  props,
-  navigation,
-}: {
-  props: any;
-  navigation: any;
-}) => {
+const ListaRecursosScreen = (props: any) => {
+  const navigation = useNavigation();
   const [lista, setLista] = React.useState<Recurso[]>();
   const [message, setMessage] = React.useState<Message>({
     message: '',

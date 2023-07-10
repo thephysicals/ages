@@ -45,12 +45,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Dosis',
     marginLeft: 5,
     fontSize: 20,
+    color: '#000000',
   },
   descricao: {
     textAlign: 'left',
     fontFamily: 'Dosis',
     marginLeft: 5,
     fontSize: 15,
+    color: '#000000',
   },
 });
 

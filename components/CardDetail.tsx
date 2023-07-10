@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
     fontFamily: 'Dosis',
+    color: '#000000',
   },
   imageHeader: {
     alignSelf: 'flex-start',

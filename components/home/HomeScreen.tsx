@@ -35,9 +35,8 @@ function HomeScreen(props: any) {
 
   const getUnderline = (userLoginUser: LoginUser) => {
     return {
-      borderColor: 'red',
-      borderWidth: 20,
-      borderStyle: 'solid',
+      textDecorationLine: 'underline',
+      textDecorationColor: userLoginUser?.color,
     };
   };
 
@@ -55,7 +54,7 @@ function HomeScreen(props: any) {
     <HeaderSmallLogo title="Minha home" message={msg} setMessage={setMessage}>
       <View style={styles.container}>
         <Text style={styles.label}>
-          Bem vindo,{' '}
+          Olá,{' '}
           <Text style={getUnderline(userLoginUser!)}>
             {userLoginUser?.given_name}
           </Text>
@@ -92,6 +91,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Dosis',
     fontSize: 30,
     padding: 10,
+    color: '#000000',
   },
   container: {alignItems: 'flex-start', padding: 20},
   separator: {

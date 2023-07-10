@@ -33,6 +33,7 @@ const HeaderSmallLogo = ({
             fontSize: 20,
             fontWeight: 'bold',
             flex: 3,
+            color: '#000000',
           }}>
           {title}
         </Text>

@@ -29,7 +29,7 @@ const SpecialButton = ({
 };
 
 const styles = StyleSheet.create({
-  text: {fontSize: 25, fontFamily: 'Dosis'},
+  text: {fontSize: 25, fontFamily: 'Dosis', color: '#000000'},
   image: {height: 25, width: 25, margin: 5, marginRight: 5},
   container: {flexDirection: 'row', padding: 5},
 });

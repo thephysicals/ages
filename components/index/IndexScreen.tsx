@@ -14,6 +14,7 @@ function IndexScreen({navigation}: {navigation: any}) {
             fontSize: 18,
             fontFamily: 'Dosis',
             padding: 10,
+            color: '#000000',
           }}>
           Essa é a área de gerenciamento e reservas de equipamentos e salas
           compartilhadas do CEFID. Clique em login se já tem cadastro, se não,
