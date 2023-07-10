@@ -6,6 +6,7 @@ import {Message, TypeMessage} from '../../types/Message';
 import Violation from '../../types/Violation';
 import {loginService, storeJwt} from '../../services/login/login-service';
 import {useNavigation} from '@react-navigation/native';
+import {cpfMask} from '../../services/user/user-service';
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -21,7 +22,40 @@ const LoginScreen = (props: any) => {
     type: TypeMessage.success,
   });
 
+  const maskCpf = (cpf: string) => {
+    setLogin(cpfMask(cpf));
+  };
+
+  const createViolation = (field: string, message: string): Violation => {
+    const v: Violation = {field, message};
+    return v;
+  };
+
   const loginUser = (l: Login) => {
+    const initialViolations: Violation[] = [];
+    const msg: Message = {
+      message: '',
+      type: TypeMessage.success,
+      violations: [],
+    };
+    if (!l.login) {
+      initialViolations.push(createViolation('cpf', 'Informe seu CPF'));
+    }
+
+    if (l.login && l.login.length < 14) {
+      initialViolations.push(createViolation('cpf', 'CPF inválido'));
+    }
+
+    if (!l.senha) {
+      initialViolations.push(createViolation('senha', 'Informe a senha'));
+    }
+
+    if (initialViolations.length > 0) {
+      msg.violations = initialViolations;
+      msg.type = TypeMessage.warning;
+      setMessage(msg);
+      return;
+    }
     loginService(
       l,
       async data => {
@@ -64,7 +98,7 @@ const LoginScreen = (props: any) => {
           inputMode="numeric"
           keyboardAppearance="dark"
           autoCorrect={false}
-          onChangeText={setLogin}
+          onChangeText={maskCpf}
           value={login}
           placeholderTextColor="#5C5C5C"
         />

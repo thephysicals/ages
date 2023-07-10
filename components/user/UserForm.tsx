@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
-import {create} from '../../services/user/user-service';
+import {cpfMask, create} from '../../services/user/user-service';
 import User from '../../types/User';
 import HeaderSmallLogo from '../../templates/HeaderSmallLogo';
 import Violation from '../../types/Violation';
@@ -18,6 +18,10 @@ const UserForm = ({navigation}: {navigation: any}) => {
     violations: [],
     type: TypeMessage.success,
   });
+
+  const validateCpf = (input: string) => {
+    setCpf(cpfMask(input));
+  };
 
   const validateEmail = (mail: string) => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
@@ -43,6 +47,10 @@ const UserForm = ({navigation}: {navigation: any}) => {
       initialViolations.push(createViolation('cpf', 'Informe seu CPF'));
     }
 
+    if (data.cpf && data.cpf.length < 14) {
+      initialViolations.push(createViolation('cpf', 'CPF inválido'));
+    }
+
     if (!data.nome) {
       initialViolations.push(createViolation('nome', 'Informe seu nome'));
     }
@@ -53,6 +61,12 @@ const UserForm = ({navigation}: {navigation: any}) => {
 
     if (!data.senha) {
       initialViolations.push(createViolation('senha', 'Informe sua senha'));
+    }
+
+    if (data.senha && data.senha.length < 6) {
+      initialViolations.push(
+        createViolation('senha', 'Sua senha deve ter mais de 6 caracteres'),
+      );
     }
 
     if (!confirmacaoSenha) {
@@ -118,7 +132,7 @@ const UserForm = ({navigation}: {navigation: any}) => {
           keyboardAppearance="dark"
           autoCorrect={false}
           value={cpf}
-          onChangeText={setCpf}
+          onChangeText={validateCpf}
         />
         <Text style={styles.label}>Nome</Text>
         <TextInput
