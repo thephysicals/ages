@@ -11,3 +11,6 @@ cd android
 echo "Up release"
 scp /Users/eduardom.rodrigues/Projects/ages/ages/android/app/build/outputs/apk/release/app-release.apk root@104.248.253.192:/opt/httpd-data
 scp /Users/eduardom.rodrigues/Projects/ages/ages/android/app/build/outputs/apk/release/app-release.apk root@159.65.111.53:/opt/httpd-data
+
+scp /Users/eduardom.rodrigues/Projects/ages/ages.ipa root@104.248.253.192:/opt/httpd-data
+scp /Users/eduardom.rodrigues/Projects/ages/ages.ipa root@159.65.111.53:/opt/httpd-data
